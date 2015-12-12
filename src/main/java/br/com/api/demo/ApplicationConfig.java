@@ -42,10 +42,10 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
 
 		try {
 
-			Constants.logger().info("DATASOURCE");
-			Constants.logger().info("url: " + env.getProperty("spring.datasource.url"));
-			Constants.logger().info("password: " + env.getProperty("spring.datasource.password"));
-			Constants.logger().info("username: " + env.getProperty("spring.datasource.username"));
+			System.out.println("DATASOURCE");
+			System.out.println("url: " + env.getProperty("spring.datasource.url"));
+			System.out.println("password: " + env.getProperty("spring.datasource.password"));
+			System.out.println("username: " + env.getProperty("spring.datasource.username"));
 			
 			BasicDataSource ds = new BasicDataSource();
 			ds.setUsername(env.getProperty("spring.datasource.username"));
@@ -61,7 +61,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
 			ds.setTestOnBorrow(true);
 			return ds;
 		} catch (Exception e) {
-			Constants.logger().error("Error", e);
+			System.out.println( e.getMessage() );
 		}
 
 		return null;
