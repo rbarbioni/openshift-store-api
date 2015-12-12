@@ -4,14 +4,17 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
  
-public class ApiWebApplicationInitializer implements WebApplicationInitializer {
+public class ApiWebApplicationContext implements WebApplicationInitializer {
  
+	private static ApplicationContext applicationContext;
+	
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         WebApplicationContext context = getContext();
@@ -25,7 +28,13 @@ public class ApiWebApplicationInitializer implements WebApplicationInitializer {
     private AnnotationConfigWebApplicationContext getContext() {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.setConfigLocation(Constants.PACKAGE_BASE);
+        applicationContext = context;
         return context;
     }
+
+	public static ApplicationContext getApplicationContext() {
+		return applicationContext;
+	}
  
+    
 }

@@ -1,10 +1,6 @@
-
-CREATE DATABASE IF NOT EXISTS api;
-
-USE api;
-INSERT INTO `api`.`Product` (`active`, `creation_date`, `uuid`, `name`) VALUES (1, '2015-01-01', '1', 'Galaxy S');
-INSERT INTO `api`.`Product` (`active`, `creation_date`, `uuid`, `name`) VALUES (1, '2015-01-01', '2', 'Galaxy S2');
-INSERT INTO `api`.`Product` (`active`, `creation_date`, `uuid`, `name`) VALUES (1, '2015-01-01', '3', 'Galaxy S3');
-INSERT INTO `api`.`Product` (`active`, `creation_date`, `uuid`, `name`) VALUES (1, '2015-01-01', '4', 'Galaxy S4');
-INSERT INTO `api`.`Product` (`active`, `creation_date`, `uuid`, `name`) VALUES (1, '2015-01-01', '5', 'Galaxy S5');
-INSERT INTO `api`.`Product` (`active`, `creation_date`, `uuid`, `name`) VALUES (1, '2015-01-01', '6', 'Galaxy GranDuos');
+INSERT INTO Product (active, creation_date, uuid, name) VALUES (1, '2015-01-01 15:22:40.997', '1', 'Galaxy S');
+INSERT INTO Product (active, creation_date, uuid, name) VALUES (1, '2015-01-01 15:22:40.997', '2', 'Galaxy S2');
+INSERT INTO Product (active, creation_date, uuid, name) VALUES (1, '2015-01-01 15:22:40.997', '3', 'Galaxy S3');
+INSERT INTO Product (active, creation_date, uuid, name) VALUES (1, '2015-01-01 15:22:40.997', '4', 'Galaxy S4');
+INSERT INTO Product (active, creation_date, uuid, name) VALUES (1, '2015-01-01 15:22:40.997', '5', 'Galaxy S5');
+INSERT INTO Product (active, creation_date, uuid, name) VALUES (1, '2015-01-01 15:22:40.997', '6', 'Galaxy GranDuos');
