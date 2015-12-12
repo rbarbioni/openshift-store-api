@@ -30,7 +30,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @EnableJpaRepositories(basePackages = { Constants.PACKAGE_BASE })
 @ComponentScan(basePackages = { Constants.PACKAGE_BASE })
-@PropertySource({"classpath:application.properties", "classpath:application-dev.properties" })
+@PropertySource({"classpath:application.properties" })
 @EnableWebMvc
 public class ApplicationConfig extends WebMvcConfigurerAdapter {
 
