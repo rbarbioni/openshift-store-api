@@ -42,7 +42,10 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
 
 		try {
 
-			Constants.logger().info("VAI Corinthians");
+			Constants.logger().info("DATASOURCE");
+			Constants.logger().info("url: " + env.getProperty("spring.datasource.url"));
+			Constants.logger().info("password: " + env.getProperty("spring.datasource.password"));
+			Constants.logger().info("username: " + env.getProperty("spring.datasource.username"));
 			
 			BasicDataSource ds = new BasicDataSource();
 			ds.setUsername(env.getProperty("spring.datasource.username"));
