@@ -61,7 +61,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
 			ds.setTestOnBorrow(true);
 			return ds;
 		} catch (Exception e) {
-			Constants.logger().severe(e.getMessage());
+			Constants.logger().error("Error", e);
 		}
 
 		return null;
