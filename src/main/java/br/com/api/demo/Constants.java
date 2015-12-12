@@ -6,4 +6,5 @@ package br.com.api.demo;
 public class Constants {
 
     public static final String PACKAGE_BASE = "br.com.api.demo";
+    public static String PROFILE = "";
 }
