@@ -10,44 +10,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.api.demo.model.Product;
-import br.com.api.demo.repository.ProductRepository;
+import br.com.api.demo.model.Category;
+import br.com.api.demo.repository.CategoryRepository;
 
 /**
  * Created by root on 10/12/15.
  */
 @RestController
-@RequestMapping(value="product", produces = MediaType.APPLICATION_JSON_VALUE)
-public class ProductController {
+@RequestMapping(value="category", produces = MediaType.APPLICATION_JSON_VALUE)
+public class CategoryController {
 	
 	@Autowired
-	private ProductRepository productRepository;
+	private CategoryRepository categoryRepository;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public List<Product> findAll(){
-		return this.productRepository.findAll();
+	public List<Category> findAll(){
+		return this.categoryRepository.findAll();
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public Product findOne(@PathVariable(value="id") Long id){
-		return this.productRepository.findOne(id);
+	public Category findOne(@PathVariable(value="id") Long id){
+		return this.categoryRepository.findOne(id);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public Product create( @RequestBody Product product ){		
-		return this.productRepository.save(product);
+	public Category create( @RequestBody Category category ){		
+		return this.categoryRepository.save(category);
 	}
 	
 	@RequestMapping(value="/{id}", method={RequestMethod.PUT, RequestMethod.PATCH})
-	public Product update(@PathVariable(value="id") Long id, @RequestBody Product product ){
-		return this.productRepository.save(product);
+	public Category update(@PathVariable(value="id") Long id, @RequestBody Category category ){
+		return this.categoryRepository.save(category);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public void delete(@PathVariable(value="id") Long id ){
-		Product product = this.productRepository.findOne(id);
-		if ( product != null ){
-			this.productRepository.delete(product);
+		Category category = this.categoryRepository.findOne(id);
+		if ( category != null ){
+			this.categoryRepository.delete(category);
 		}
 	}
 }

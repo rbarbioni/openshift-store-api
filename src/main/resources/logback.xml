@@ -13,7 +13,7 @@
 		<appender-ref ref="STDOUT" />
 	</logger>
 	
-	<logger name="com.mkyong.helloworld" level="debug" additivity="false">
+	<logger name="br.com.api.demo" level="debug" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
 	 

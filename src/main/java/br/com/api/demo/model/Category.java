@@ -10,8 +10,11 @@ import org.hibernate.annotations.FetchMode;
 
 import br.com.rbarbioni.application.core.models.DomainEntity;
 
+/**
+ * Created by root on 10/12/15.
+ */
 @Entity
-public class Product extends DomainEntity {
+public class Category extends DomainEntity {
 	
 	private static final long serialVersionUID = -2142641923557789412L;
 	
@@ -19,9 +22,9 @@ public class Product extends DomainEntity {
 	private String name;
 	
 	@ManyToOne
-	@JoinColumn ( name = "category_id", nullable = true )
+	@JoinColumn ( name = "parent_id", nullable = true )
 	@Fetch ( FetchMode.JOIN )
-	private Category category;
+	private Category parent;
 
 	public String getName() {
 		return name;
@@ -31,11 +34,11 @@ public class Product extends DomainEntity {
 		this.name = name;
 	}
 
-	public Category getCategory() {
-		return category;
+	public Category getParent() {
+		return parent;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setParent(Category parent) {
+		this.parent = parent;
 	}
 }
