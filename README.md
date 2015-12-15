@@ -1,28 +1,32 @@
-Openshift Java Api Demo
+Openshift Java Store-Api REST Application
 =============
 
-This project is a sample Java applications with REST API using:
+This is a starter template for developing Spring framework applications on OpenShift. It uses the latest Spring framework release i.e. 4.2.2.RELEASE.
+The project configures Spring application using WebApplicationInitializer. There is no web.xml in this project and everything is configured using annotations.
 
-* Spring;
-* Persistence JPA;
-* Hibernate;
-* Jackson;
-* No XML configuration;
+Features:
+-------
+
+* Spring 4.2.2;
+* Spring Data JPA
+* No Spring XML configuration;
+* Persistence JPA 2;
+* Hibernate 5;
+* Jackson REST;
 * 100% Annotations configurations;
 * HSQLDB;
-* Initializing data script;
+* Initializing data SQL script;
+* Logback
 
 Instructions
 -------
 
 * Create account https://www.openshift.com/app/account/new
-* Create project Tomcat 7 (JBoss EWS 2.0) into field Source Code add https://github.com/rbarbioni/openshift-apidemo.git branch master
-* Clone Openshift application repository
-* Import project into favorite IDE (In Eclipse, required Jboss Tools plugin)
-* Required Tomcat or Jboss application Server
-* Add project to Server and start
-* Done! :)
-
+* Install rhc client tools https://developers.openshift.com/en/managing-client-tools.html
+* rhc create-app store tomcat-7 --from-code https://github.com/rbarbioni/openshift-store-api.git
+* Clone Openshift GIT Repo
+* Import your favorite IDE compartible MAVEN projects.
+* Change code, commit and push
 
 
 
