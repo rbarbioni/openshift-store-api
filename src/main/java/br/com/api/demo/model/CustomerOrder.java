@@ -2,10 +2,7 @@ package br.com.api.demo.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -25,7 +22,7 @@ public class CustomerOrder extends DomainEntity {
 	@Fetch ( FetchMode.JOIN )
 	private Customer customer;
 	
-	@OneToMany(mappedBy="product")
+	@OneToMany(mappedBy="product", fetch = FetchType.EAGER)
 	private List< OrderProduct > products;
 
 	public Customer getCustomer() {
@@ -42,5 +39,9 @@ public class CustomerOrder extends DomainEntity {
 
 	public void setProducts(List<OrderProduct> products) {
 		this.products = products;
+	}
+
+	public Long getNumber(){
+		return this.id;
 	}
 }

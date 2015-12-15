@@ -1,9 +1,11 @@
 package br.com.api.demo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -25,7 +27,11 @@ public class OrderProduct extends DomainEntity {
 	@ManyToOne
 	@JoinColumn ( name = "order_id" )
 	@Fetch ( FetchMode.JOIN )
+	@JsonIgnore
 	private CustomerOrder order;
+
+	@Column(name="amount")
+	private Long amount;
 
 	public Product getProduct() {
 		return product;
@@ -41,5 +47,13 @@ public class OrderProduct extends DomainEntity {
 
 	public void setOrder(CustomerOrder order) {
 		this.order = order;
+	}
+
+	public Long getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Long amount) {
+		this.amount = amount;
 	}
 }

@@ -1,11 +1,18 @@
 package br.com.api.demo;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +22,10 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
@@ -34,7 +45,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @PropertySource({"classpath:application.properties", "classpath:application-dev.properties" })
 @EnableWebMvc
 public class ApplicationConfig extends WebMvcConfigurerAdapter {
-
 
 	@Bean(name = "dataSource")
 	public DataSource dataSource() {
@@ -123,5 +133,20 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
         final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
         populator.addScript(dataScript);
         return populator;
-    }    
+    }
+
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
+		builder.applicationContext( ApiWebApplicationContext.getApplicationContext());
+		builder.serializationInclusion(JsonInclude.Include.NON_NULL);
+		builder.failOnUnknownProperties(false);
+		builder.failOnEmptyBeans(false);
+		builder.propertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+		builder.serializationInclusion(JsonInclude.Include.NON_EMPTY);
+		builder.indentOutput(true).dateFormat(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss"));
+		ObjectMapper build = builder.build();
+		converters.add(new MappingJackson2HttpMessageConverter(build));
+		build.registerModule( new Hibernate5Module());
+	}
 }

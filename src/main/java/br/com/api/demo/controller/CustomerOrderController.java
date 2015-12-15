@@ -17,7 +17,7 @@ import br.com.api.demo.repository.CustomerOrderRepository;
  * Created by root on 10/12/15.
  */
 @RestController
-@RequestMapping(value="customerOrder", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="order", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CustomerOrderController {
 	
 	@Autowired

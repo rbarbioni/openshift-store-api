@@ -7,6 +7,6 @@ import br.com.api.demo.model.Category;
 /**
  * Created by root on 10/12/15.
  */
-public interface CategoryRepository extends JpaRepository<Category, Long> {
+public interface CategoryRepository extends DomainRepository<Category> {
 
 }

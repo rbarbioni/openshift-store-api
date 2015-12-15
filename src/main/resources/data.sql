@@ -14,5 +14,5 @@ INSERT INTO Customer (id, active, creation_date, uuid, name) VALUES (1, 1, '2015
 
 INSERT INTO CustomerOrder (id, active, creation_date, uuid, customer_id) VALUES (1, 1, '2015-01-01 15:22:40.997', '1', 1);
 
-INSERT INTO OrderProduct (id, active, creation_date, uuid, product_id, order_id) VALUES (1, 1, '2015-01-01 15:22:40.997', '1', 1,1);
+INSERT INTO OrderProduct (id, active, creation_date, uuid, product_id, order_id, amount) VALUES (1, 1, '2015-01-01 15:22:40.997', '1', 1, 1, 10);
 

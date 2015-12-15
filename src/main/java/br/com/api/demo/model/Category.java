@@ -1,10 +1,8 @@
 package br.com.api.demo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -21,9 +19,8 @@ public class Category extends DomainEntity {
 	@Column(name="name")
 	private String name;
 	
-	@ManyToOne
-	@JoinColumn ( name = "parent_id", nullable = true )
-	@Fetch ( FetchMode.JOIN )
+	@ManyToOne(cascade = {CascadeType.ALL, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+	@JoinColumn ( name = "parent_id")
 	private Category parent;
 
 	public String getName() {

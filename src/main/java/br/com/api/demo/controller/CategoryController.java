@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import br.com.api.demo.repository.CategoryRepository;
  */
 @RestController
 @RequestMapping(value="category", produces = MediaType.APPLICATION_JSON_VALUE)
+@Transactional
 public class CategoryController {
 	
 	@Autowired
@@ -34,7 +36,24 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public Category create( @RequestBody Category category ){		
+	public Category create( @RequestBody Category category ){
+
+		if ( category.getParent() != null ){
+
+			Category parent = null;
+
+			if (category.getParent().getUUID() != null ) {
+				 parent = (Category) categoryRepository.findByuUID( category.getParent().getUUID() );
+			}
+
+			if ( parent == null ){
+				parent = new Category();
+				parent.setName( category.getParent().getName());
+			}
+
+			category.setParent( parent );
+		}
+
 		return this.categoryRepository.save(category);
 	}
 	
